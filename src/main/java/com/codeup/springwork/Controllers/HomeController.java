@@ -1,7 +1,8 @@
-package com.codeup.springwork;
+package com.codeup.springwork.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -9,6 +10,6 @@ public class HomeController {
     @ResponseBody
     @GetMapping("/")
     public String hello() {
-        return "This is the landing page!";
+        return "Howdy, ";
     }
 }
