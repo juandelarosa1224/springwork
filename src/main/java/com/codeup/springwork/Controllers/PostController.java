@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@ResponseBody
 public class PostController {
     @GetMapping("/posts")
     public String post() {
-        return "Posts index page!";
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
