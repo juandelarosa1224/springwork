@@ -1,6 +1,7 @@
 package com.codeup.springwork.Controllers;
 
 import com.codeup.springwork.models.Post;
+import com.codeup.springwork.models.UserRepository;
 import com.codeup.springwork.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,15 +10,18 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class PostController {
     private PostService postService;
+    private UserRepository userRepo;
+    public PostController(PostService ps, UserRepository userRepo) {
 
-    public PostController(PostService ps) {
         this.postService = ps;
+        this.userRepo = userRepo;
     }
 
 
     @GetMapping("/posts")
     public String index(Model model) {
         model.addAttribute("posts", postService.all());
+        System.out.println("there are " + userRepo.count() + "users");
         return "posts/index";
     }
 
@@ -42,7 +46,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}/edit")
     public String showEditForm(@PathVariable int id, Model model) {
-        model.addAttribute("post", postService.one(id));
+        model.addAttribute("post", postService.findOne(id));
         return "/posts/edit";
     }
 

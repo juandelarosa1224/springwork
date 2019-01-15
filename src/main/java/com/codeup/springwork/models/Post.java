@@ -1,15 +1,34 @@
 package com.codeup.springwork.models;
 
+
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="posts")
 public class Post {
-    private String title;
-    private String body;
+
+    @Id
+    @GeneratedValue
     private int id;
+
+    @Column(nullable = false, length = 100)
+    private String title;
+
+    @Column(nullable = false, length = 10000)
+    private String body;
 
     public Post(){}
 
     public Post(String title, String body) {
         this.title = title;
         this.body = body;
+    }
+    public Post (String title, String body, int id) {
+        this(title,body);
+        this.setId(id);
     }
 
     public int getId() { return id; }

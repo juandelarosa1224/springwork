@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials :: head('Create Post')"></head>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials::head('Create Post')"></head>
 <body>
 <main role="main" class="container">
     <div th:replace="partials::header"></div>
@@ -9,19 +9,23 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">New Post</h5>
-            <form action="/posts/create" method="post" th:object="${post}">
+            <form class="card-text" action="/posts/create" method="post" th:object="${post}">
                 Title:
                 <input th:field="*{title}" />
                 <br />
                 Body:
-                <textarea th:field="*{body}"></textarea>
+                <textarea th:field="*{body}" ></textarea>
                 <br />
                 <button type="submit">Create</button>
             </form>
         </div>
     </div>
+
+
+
     <div th:replace="partials::footer"></div>
-</main>
+</main><!-- /.container -->
+<div th:replace="partials::scripts"></div>
 
 </body>
 </html>
