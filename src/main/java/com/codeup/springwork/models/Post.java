@@ -1,17 +1,13 @@
 package com.codeup.springwork.models;
 
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name="posts")
 public class Post {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private int id;
 
     @Column(nullable = false, length = 100)
@@ -20,13 +16,16 @@ public class Post {
     @Column(nullable = false, length = 10000)
     private String body;
 
-    public Post(){}
+    @ManyToOne @JoinColumn(name = "user_id")
+    private User user;
+
+    public Post() {}
 
     public Post(String title, String body) {
         this.title = title;
         this.body = body;
     }
-    public Post (String title, String body, int id) {
+    public Post(String title, String body,int id) {
         this(title,body);
         this.setId(id);
     }
@@ -42,4 +41,8 @@ public class Post {
     public String getBody() { return body; }
 
     public void setBody(String body) { this.body = body; }
+
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
 }
